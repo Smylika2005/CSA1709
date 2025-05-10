@@ -1,0 +1,44 @@
+class Puzzle:
+    def __init__(self, board):
+        self.board = board
+
+    def __str__(self):
+        return '\n'.join([' '.join(row) for row in self.board])
+
+    def move(self, direction):
+        if direction == 'up':
+            # Move the empty space up
+            pass
+        elif direction == 'down':
+            # Move the empty space down
+            pass
+        elif direction == 'left':
+            # Move the empty space left
+            pass
+        elif direction == 'right':
+            # Move the empty space right
+            pass
+
+    def solve(self):
+        # Solve the puzzle using a search algorithm
+        pass
+
+# Create the initial board configuration
+board = [['1', '2', '3'],
+         ['4', '5', '6'],
+         ['7', '8', ' ']]
+
+# Create a new puzzle instance
+puzzle = Puzzle(board)
+
+# Print the initial board configuration
+print(puzzle)
+
+# Move the empty space up
+puzzle.move('up')
+
+# Print the updated board configuration
+print(puzzle)
+
+# Solve the puzzle
+puzzle.solve()
