@@ -1,0 +1,11 @@
+def solve_arithmetic_problem(expression):
+    try:
+        result = eval(expression)
+        return result
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+if __name__ == "__main__":
+    problem = "3 + 5 * (2 - 1)"
+    print(f"The result of the Problem is:solve_arithmetic_problem(expression):
+    )
