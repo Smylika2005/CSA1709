@@ -1,0 +1,81 @@
+from collections import deque
+
+# Define the initial and goal states
+initial_state = (3, 3, 'L')
+goal_state = (0, 0, 'R')
+
+# All possible moves (M, C): (missionaries, cannibals)
+moves = [
+    (2, 0), (0, 2), (1, 1),
+    (1, 0), (0, 1)
+]
+
+def is_valid(state):
+    M_left, C_left, _ = state
+    M_right = 3 - M_left
+    C_right = 3 - C_left
+
+    # Check that numbers are within bounds
+    if not (0 <= M_left <= 3 and 0 <= C_left <= 3):
+        return False
+    if not (0 <= M_right <= 3 and 0 <= C_right <= 3):
+        return False
+
+    # Check missionaries are not outnumbered (if any missionaries present)
+    if M_left > 0 and M_left < C_left:
+        return False
+    if M_right > 0 and M_right < C_right:
+        return False
+
+    return True
+
+def get_successors(state):
+    successors = []
+    M, C, boat = state
+    for m, c in moves:
+        if boat == 'L':
+            new_state = (M - m, C - c, 'R')
+        else:
+            new_state = (M + m, C + c, 'L')
+
+        if is_valid(new_state):
+            successors.append(new_state)
+    return successors
+
+def bfs():
+    queue = deque()
+    visited = set()
+    parent = {}
+
+    queue.append(initial_state)
+    visited.add(initial_state)
+    parent[initial_state] = None
+
+    while queue:
+        state = queue.popleft()
+        if state == goal_state:
+            # Reconstruct path
+            path = []
+            while state:
+                path.append(state)
+                state = parent[state]
+            return path[::-1]
+
+        for next_state in get_successors(state):
+            if next_state not in visited:
+                visited.add(next_state)
+                parent[next_state] = state
+                queue.append(next_state)
+
+    return None
+
+# Run the algorithm
+solution = bfs()
+
+# Print the solution
+if solution:
+    print("Solution found in", len(solution) - 1, "moves:")
+    for step in solution:
+        print(step)
+else:
+    print("No solution found.")
