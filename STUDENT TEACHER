@@ -1,0 +1,20 @@
+% Define teachers
+teacher(mr_smith).
+teacher(ms_jones).
+
+% Define students
+student(john).
+student(mary).
+student(alice).
+
+% Define subjects
+subject(math).
+subject(science).
+
+% Define relationships
+teaches(mr_smith, math).
+teaches(ms_jones, science).
+
+enrolled(john, math).
+enrolled(mary, science).
+enrolled(alice, math).
