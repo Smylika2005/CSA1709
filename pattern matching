@@ -1,0 +1,15 @@
+# Pattern Matching in Prolog
+
+% Define a simple pattern matching rule
+match(X, X).  % Base case: X matches X
+
+% Recursive case: match a list with a pattern
+match([], []).  % An empty list matches an empty list
+match([H|T], [H|P]) :- match(T, P).  % Head matches head, recurse on tails
+match([H|T], [_|P]) :- match([H|T], P).  % Skip a pattern element
+
+% Example queries
+% ?- match([1, 2, 3], [1, 2, 3]).  % Should return true
+% ?- match([1, 2, 3], [1, _, 3]).  % Should return true
+% ?- match([1, 2, 3], [_, 2, _]).  % Should return true
+% ?- match([1, 2, 3], [4, 5, 6]).  % Should return false
