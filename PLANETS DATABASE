@@ -1,0 +1,14 @@
+% Basic Planets Database
+
+% Facts about planets
+planet(mercury, 57.91e6, 0.330, terrestrial).
+planet(venus, 108.2e6, 4.87, terrestrial).
+planet(earth, 149.6e6, 5.97, terrestrial).
+planet(mars, 227.9e6, 0.642, terrestrial).
+planet(jupiter, 778.5e6, 1898, gas_giant).
+planet(saturn, 1.429e9, 568, gas_giant).
+planet(uranus, 2.871e9, 86.8, ice_giant).
+planet(neptune, 4.495e9, 102, ice_giant).
+
+% Query example: Find all terrestrial planets
+terrestrial_planet(Name) :- planet(Name, _, _, terrestrial).
