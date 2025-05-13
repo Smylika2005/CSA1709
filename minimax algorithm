@@ -1,0 +1,22 @@
+import math
+
+def minimax(depth, node_index, is_max, scores, h):
+    if depth == h:
+        return scores[node_index]
+
+    if is_max:
+        return max(minimax(depth + 1, node_index * 2, False, scores, h),
+                   minimax(depth + 1, node_index * 2 + 1, False, scores, h))
+    else:
+        return min(minimax(depth + 1, node_index * 2, True, scores, h),
+                   minimax(depth + 1, node_index * 2 + 1, True, scores, h))
+
+def find_best_move(scores, h):
+    best_val = minimax(0, 0, True, scores, h)
+    return best_val
+
+# Example usage
+scores = [3, 5, 6, 9, 1, 2, 0, -1]
+h = math.log2(len(scores))
+best_move = find_best_move(scores, int(h))
+print("The best move has a value of:", best_move)
