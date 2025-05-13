@@ -1,0 +1,26 @@
+% Define the initial state
+state(monkey(ground), banana(high), box(ground)).
+
+% Action to move the box
+move_box :- 
+    state(monkey(ground), banana(high), box(ground)),
+    retract(state(monkey(ground), banana(high), box(ground))),
+    assert(state(monkey(ground), banana(high), box(near))).
+
+% Action to climb the box
+climb_box :- 
+    state(monkey(ground), banana(high), box(near)),
+    retract(state(monkey(ground), banana(high), box(near))),
+    assert(state(monkey(climbing), banana(high), box(near))).
+
+% Action to grab the banana
+grab_banana :- 
+    state(monkey(climbing), banana(high), box(near)),
+    retract(state(monkey(climbing), banana(high), box(near))),
+    assert(state(monkey(ground), banana(grabbed), box(near))).
+
+% Solve the problem
+solve :- 
+    move_box, 
+    climb_box, 
+    grab_banana.
