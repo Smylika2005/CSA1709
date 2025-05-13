@@ -1,0 +1,23 @@
+% Best First Search Implementation in Prolog
+
+best_first_search(Start, Goal, Path) :-
+    best_first([[Start]], Goal, RevPath),
+    reverse(RevPath, Path).
+
+best_first([[Goal|Path]|_], Goal, [Goal|Path]).
+best_first([Path|Paths], Goal, Result) :-
+    extend(Path, NewPaths),
+    append(Paths, NewPaths, UpdatedPaths),
+    sort(UpdatedPaths, SortedPaths),
+    best_first(SortedPaths, Goal, Result).
+
+extend([Node|Path], NewPaths) :-
+    findall([NewNode, Node|Path], (edge(Node, NewNode), \+ member(NewNode, [Node|Path])), NewPaths).
+
+% Example edges
+edge(a, b).
+edge(a, c).
+edge(b, d).
+edge(c, d).
+edge(b, e).
+edge(c, f).
