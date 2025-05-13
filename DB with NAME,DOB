@@ -1,0 +1,9 @@
+% Basic Prolog database for storing names and dates of birth
+
+% Facts
+person('Alice', '1990-05-15').
+person('Bob', '1985-10-20').
+person('Charlie', '1992-03-30').
+
+% Query example: To find the DOB of a person
+% ?- person(Name, DOB).
