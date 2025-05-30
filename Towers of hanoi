@@ -1,0 +1,10 @@
+% towers_of_hanoi(N, Source, Target, Auxiliary)
+towers_of_hanoi(0, _, _, _) :- !.
+towers_of_hanoi(N, Source, Target, Auxiliary) :-
+    N > 0,
+    M is N - 1,
+    towers_of_hanoi(M, Source, Auxiliary, Target),
+    format('Move disk ~w from ~w to ~w~n', [N, Source, Target]),
+    towers_of_hanoi(M, Auxiliary, Target, Source).
+
+% Example query: ?- towers_of_hanoi(3, 'A', 'C', 'B').
