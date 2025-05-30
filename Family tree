@@ -1,0 +1,16 @@
+parent(john, michael).
+parent(john, anna).
+parent(michael, sarah).
+parent(michael, david).
+parent(anna, peter).
+parent(anna, laura).
+parent(laura, james).
+
+sibling(X, Y) :- parent(Z, X), parent(Z, Y), X \= Y.
+
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Y) :- parent(Z, Y), ancestor(X, Z).
+
+% Example queries:
+% To find siblings of Michael: ?- sibling(michael, S).
+% To find ancestors of James: ?- ancestor(A, james).
