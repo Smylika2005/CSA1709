@@ -1,0 +1,15 @@
+can_fly(eagle).
+can_fly(sparrow).
+can_fly(pigeon).
+can_fly(hummingbird).
+
+cannot_fly(ostrich).
+cannot_fly(penguin).
+cannot_fly(kakapo).
+
+can_fly(Bird) :- cannot_fly(Bird), !, fail.
+can_fly(Bird).
+
+% Example queries:
+% To check if a bird can fly: ?- can_fly(eagle).
+% To check if a bird cannot fly: ?- cannot_fly(ostrich).
