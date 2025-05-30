@@ -1,0 +1,23 @@
+diet_diabetes('Low sugar diet').
+diet_diabetes('High fiber diet').
+diet_diabetes('Balanced diet with controlled carbohydrates').
+
+diet_hypertension('Low sodium diet').
+diet_hypertension('High potassium diet').
+diet_hypertension('DASH diet').
+
+diet_high_cholesterol('Low saturated fat diet').
+diet_high_cholesterol('High fiber diet').
+diet_high_cholesterol('Mediterranean diet').
+
+diet_obesity('Calorie-controlled diet').
+diet_obesity('High protein diet').
+diet_obesity('Low carbohydrate diet').
+
+suggest_diet(Disease, Recommendation) :-
+    (   Disease = diabetes -> diet_diabetes(Recommendation)
+    ;   Disease = hypertension -> diet_hypertension(Recommendation)
+    ;   Disease = high_cholesterol -> diet_high_cholesterol(Recommendation)
+    ;   Disease = obesity -> diet_obesity(Recommendation)
+    ;   Recommendation = 'No specific diet found for this disease'
+    ).
